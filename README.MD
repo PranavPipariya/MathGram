@@ -60,6 +60,8 @@ npm install
 ```
 
 ### 2. Configure environment
+
+Please get a Mistral API key from [here](https://v2.auth.mistral.ai/login?flow=c4e58749-a534-4273-983a-74a2b0c4cf01)
 Create `backend/.env`:
 ```env
 MISTRAL_API_KEY=your_mistral_key_here
