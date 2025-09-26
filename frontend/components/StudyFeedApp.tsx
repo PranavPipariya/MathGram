@@ -5,6 +5,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, X, Minus, Sparkles, Clock, Settings, Brain, BookOpen, Zap } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 
 // ========== TYPES (shared with backend shape) ==========
 const CARD_TYPES = ["definition", "cloze", "mcq"] as const;
@@ -226,7 +228,7 @@ const HeaderBar: React.FC<{ streakDays: number; coins: number }> = ({ streakDays
         <motion.div initial={{ rotate: -8 }} animate={{ rotate: 0 }} className="h-9 w-9 rounded-2xl bg-blue-600 flex items-center justify-center text-white">
           <BookOpen size={18} />
         </motion.div>
-        <div className="font-semibold">StudyStream</div>
+        <div className="font-semibold">MathGram</div>
         <span className="ml-2 inline-flex items-center gap-1 text-xs text-blue-700 bg-blue-100 rounded-full px-2 py-0.5"><Zap size={12}/> Learn Math by Doomscrolling</span>
       </div>
       <div className="flex items-center gap-4">
@@ -237,6 +239,8 @@ const HeaderBar: React.FC<{ streakDays: number; coins: number }> = ({ streakDays
     </div>
   </div>
 );
+
+
 
 const SessionSummary: React.FC<{ open: boolean; onClose: () => void; stats: { got: number; meh: number; stumped: number; mins: number } }> = ({ open, onClose, stats }) => (
   <AnimatePresence>
@@ -270,7 +274,7 @@ const SessionSummary: React.FC<{ open: boolean; onClose: () => void; stats: { go
           </div>
           <div className="mt-6 flex justify-end gap-2">
             <button onClick={onClose} className="px-4 py-2 rounded-xl border hover:bg-slate-50">Stop here</button>
-            <button onClick={onClose} className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Keep scrolling</button>
+            <button onClick={()=>window.location.reload()} className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Keep scrolling</button>
           </div>
         </motion.div>
       </motion.div>
@@ -357,8 +361,10 @@ export default function StudyFeedApp({ seedCards }: { seedCards?: Card[] }) {
 
 <div className="h-12 flex items-center justify-center text-slate-500 text-md animate-pulse">
   Please wait for a moment while we generate the most fun math problems for you! (usually takes less than a minute)
+ 
 </div>
 
+ <button onClick={()=>window.location.reload()} className="h-12 flex items-center justify-center text-blue-500 text-lg animate-pulse">Click to refresh feed ! </button>
 
 
 
